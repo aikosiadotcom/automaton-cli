@@ -1,2 +1,25 @@
-# automaton-cli
-client interface for automaton
+
+<h1 align="center">AUTOMATON CLIENT<br/><div><h6><i>Command Line Interface For Automaton</i></h6></div></h1>
+
+<div align="center">
+    
+[![npm-publish](https://github.com/aikosiadotcom/automaton/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/aikosiadotcom/automaton/actions/workflows/npm-publish.yml)
+![Branches](https://raw.githubusercontent.com/aikosiadotcom/automaton/main/badges/coverage-branches.svg?raw=true)
+![Functions](https://raw.githubusercontent.com/aikosiadotcom/automaton/main/badges/coverage-functions.svg?raw=true)
+![Lines](https://raw.githubusercontent.com/aikosiadotcom/automaton/main/badges/coverage-lines.svg?raw=true)
+![Statements](https://raw.githubusercontent.com/aikosiadotcom/automaton/main/badges/coverage-statements.svg?raw=true)
+![Jest coverage](https://raw.githubusercontent.com/aikosiadotcom/automaton/main/badges/coverage-jest%20coverage.svg?raw=true)
+
+</div>
+
+# INTRODUCTION
+
+this module will be install automatically when you install @aikosia/automaton.
+
+of course, if you can install it globally you can use this syntax:
+
+```
+npm install -g @aikosia/automaton-cli
+```
+
+and then you can type **automaton** on your command line to show all commands.

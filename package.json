@@ -1,0 +1,24 @@
+{
+  "name": "@aikosia/automaton-cli",
+  "version": "0.1.0",
+  "description": "",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node ./src/index.js",
+    "release": "node ./src/script/release.js"
+  },
+  "type": "module",
+  "author": "firman",
+  "bin": "./src/index.js",
+  "license": "ISC",
+  "dependencies": {
+    "@igor.dvlpr/valid-path": "^2.2.1",
+    "commander": "^10.0.1",
+    "dotenv": "^16.0.3",
+    "fs-extra": "^11.1.1",
+    "read-pkg": "^8.0.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
+}
