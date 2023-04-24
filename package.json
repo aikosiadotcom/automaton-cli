@@ -1,6 +1,6 @@
 {
   "name": "@aikosia/automaton-cli",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "",
   "main": "./src/index.js",
   "scripts": {
@@ -23,7 +23,8 @@
     "client"
   ],
   "files": [
-    "src"
+    "src",
+    ".env"
   ],
   "type": "module",
   "author": "firman",
