@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 import * as dotenv from 'dotenv';
 dotenv.config();
-import {readPackage} from 'read-pkg';
-const json = await readPackage();
 
 import { Command } from "commander";
 import ExecCommand  from "./command/exec.js";
@@ -16,7 +14,7 @@ const program = new Command("automaton");
 program
   .name("automaton")
   .description("create & deploy your bot in seconds.")
-  .version(json.version)
+  .version("1.0.0")
 
 program.addCommand(CreateCommand());
 program.addCommand(ExecCommand());
