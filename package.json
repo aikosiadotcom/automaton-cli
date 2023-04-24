@@ -7,10 +7,25 @@
     "start": "cross-env NODE_ENV=production node ./src/index.js",
     "release": "node ./src/script/release.js"
   },
+  "keywords": [
+    "aikosia",
+    "automaton",
+    "automation",
+    "bot",
+    "puppeteer",
+    "playwright",
+    "chromium",
+    "framework",
+    "cli",
+    "client"
+  ],
+  "files": [
+    "src"
+  ],
   "type": "module",
   "author": "firman",
   "bin": "./src/index.js",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@igor.dvlpr/valid-path": "^2.2.1",
     "commander": "^10.0.1",
