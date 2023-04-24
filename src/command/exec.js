@@ -1,5 +1,5 @@
 import { Command } from "commander";
-import {Runtime} from '@aikosia/automaton-core';
+import {Runtime} from '@aikosia/automaton';
 
 async function exec(name,option,command){
     console.log("env: ",process.env.NODE_ENV);
