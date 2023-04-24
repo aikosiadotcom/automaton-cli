@@ -14,9 +14,7 @@
 
 # INTRODUCTION
 
-this module will be install automatically when you install @aikosia/automaton.
-
-of course, if you can install it globally you can use this syntax:
+you can install it using this syntax:
 
 ```
 npm install -g @aikosia/automaton-cli
