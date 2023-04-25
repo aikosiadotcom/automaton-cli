@@ -25,7 +25,7 @@ async function ls(name,option,command){
 
 async function rm(name,option,command){
     if(isValidPath(name,false)){
-        const newProfile = path.join(await pm.getPath(process.env.AUTOMATON_PATH_KEY_PROFILE),name);
+        const newProfile = path.join(await pm.getPath("profile"),name);
         if(await fsExtra.exists(newProfile)){
             await fsExtra.rmdir(newProfile);
             console.log(`"${name}" remove successfully.`);
@@ -39,7 +39,7 @@ async function rm(name,option,command){
 
 async function start(name,option,command){
     if(isValidPath(name,false)){
-        const newProfile = path.join(await getPath(ENV.AUTOMATON_PATH_KEY_PROFILE),name);
+        const newProfile = path.join(await pm.getPath("profile"),name);
         if(await fsExtra.exists(newProfile)){
             // const context = await chromium.launchPersistentContext(newProfile,{
             //     headless:false,

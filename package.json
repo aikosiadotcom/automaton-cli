@@ -1,6 +1,6 @@
 {
   "name": "@aikosia/automaton-cli",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "description": "command line interface for automaton",
   "main": "./src/index.js",
   "repository": {
@@ -49,8 +49,8 @@
     "np": "^7.7.0"
   },
   "peerDependencies": {
-    "@aikosia/automaton-core": "0.9.x",
-    "@aikosia/automaton-daemon": "0.9.x"
+    "@aikosia/automaton-core": "^1.0.0",
+    "@aikosia/automaton-daemon": "^1.0.0"
   },
   "jest": {
     "transform": {},

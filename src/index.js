@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 import * as dotenv from 'dotenv';
-dotenv.config();
+import {System} from '@aikosia/automaton-core';
+
+dotenv.config({ path: System.getPath("env") });
 
 import { Command } from "commander";
 import ExecCommand  from "./command/exec.js";

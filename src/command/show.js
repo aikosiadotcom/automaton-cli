@@ -13,10 +13,6 @@ async function show(name,option,command){
             out[key] = value;
             }
         }
-        
-    
-        // delete out["AUTOMATON_SUPABASE_URL"];
-        // delete out["AUTOMATON_SUPABASE_KEY"];
         console.dir(out);
     }else if(name == 'path'){
         console.dir(await pm.getPath());
