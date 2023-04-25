@@ -49,8 +49,8 @@
     "np": "^7.7.0"
   },
   "peerDependencies": {
-    "@aikosia/automaton-core":"0.9.x",
-    "@aikosia/automaton-daemon":"0.9.x"
+    "@aikosia/automaton-core": "0.9.x",
+    "@aikosia/automaton-daemon": "0.9.x"
   },
   "jest": {
     "transform": {},
