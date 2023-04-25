@@ -22,9 +22,21 @@ async function create(name,option,command){
     const projectPath = path.join(currentPath, projectName);
     const git_repo = "https://github.com/aikosiadotcom/automaton-boilerplate.git";
 
-    await _checkExists(projectPath);
+    const fullProjectName = `@aikosia/automaton-rest-${name}`;
+
+    const result = JSON.parse(execSync(`npm search ${fullProjectName} --json --no-description --prefer-online`).toString());
+    
+    if(result.length){
+      if(result.filter(val=>val.name.trim() == `${fullProjectName}`).length){
+        console.error(`${name} or ${fullProjectName} found on npm registry`);
+        return;
+      }
+    }
 
     try {
+    
+        await _checkExists(projectPath);
+
         console.log('Downloading files...');
         execSync(`git clone --depth 1 ${git_repo} ${projectPath}`);
   
@@ -60,6 +72,7 @@ function CreateCommand(){
     cmd
     .description('Create a automaton bot project')
     .argument("<name>","project name")
+    .option("-t, --template", 'available template: rest, crawler, etl')
     .action(create);
 
     return cmd;

@@ -2,8 +2,8 @@ import fsExtra from 'fs-extra';
 import path from 'path';
 import { isValidPath } from '@igor.dvlpr/valid-path';
 import { Command } from "commander";
-
 import {ProfileManager} from "@aikosia/automaton-daemon";
+
 const pm = new ProfileManager();
 
 async function create(name,option,command){
