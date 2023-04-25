@@ -14,3 +14,7 @@
 # 0.3.3
 
 - add .env to npm
+
+# 0.3.4
+
+- remove read-pkg on index.js

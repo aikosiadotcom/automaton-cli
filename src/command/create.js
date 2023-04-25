@@ -32,6 +32,17 @@ async function create(name,option,command){
   
         console.log('Installing dependencies...');
         execSync('npm install');
+
+        console.log('Create .env file...');
+        await fsExtra.writeFile(path.join(projectPath,".env"),
+`#daemon connection
+AUTOMATON_DAEMON_HOST=
+AUTOMATON_DAEMON_PORT=
+
+#database connection
+AUTOMATON_SUPABASE_URL=
+AUTOMATON_SUPABASE_KEY=
+        `);
   
         console.log('Removing useless files');
         execSync('npx rimraf ./.git');
