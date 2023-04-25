@@ -1,7 +1,7 @@
 {
   "name": "@aikosia/automaton-cli",
   "version": "0.3.5",
-  "description": "",
+  "description": "command line interface for automaton",
   "main": "./src/index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production node ./src/index.js",
