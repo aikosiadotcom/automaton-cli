@@ -38,9 +38,11 @@
   "license": "MIT",
   "dependencies": {
     "@igor.dvlpr/valid-path": "^2.2.1",
+    "capitalize": "^2.0.4",
     "commander": "^10.0.1",
     "dotenv": "^16.0.3",
-    "fs-extra": "^11.1.1"
+    "fs-extra": "^11.1.1",
+    "modify-json-file": "^1.2.2"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
