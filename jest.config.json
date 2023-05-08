@@ -1,0 +1,31 @@
+{
+  "transform": {},
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "./src/**/*.js",
+    "!./src/**/*.d.ts"
+  ],
+  "coverageReporters": [
+    "clover",
+    "json",
+    "lcov",
+    "text", 
+    "json-summary"
+  ],
+  "reporters": [
+    "default",
+    [
+      "jest-html-reporters",
+      {
+        "publicPath": "./coverage",
+        "filename": "report.html",
+        "openReport": false
+      }
+    ]
+  ],
+  "testPathIgnorePatterns": [
+  ],
+  "coveragePathIgnorePatterns": [
+  ],
+  "coverageProvider": "v8"
+}

@@ -1,28 +1,34 @@
 #!/usr/bin/env node
-import * as dotenv from 'dotenv';
-import {System} from '@aikosia/automaton-core';
-
-dotenv.config({ path: System.getPath("env") });
-
 import { Command } from "commander";
-import ExecCommand  from "./command/exec.js";
-import ProfileCommand  from "./command/profile.js";
-import ShowCommand  from "./command/show.js";
-import CreateCommand  from "./command/create.js";
 
+import Environment from "#lib/environment";
+import ConfigCommand  from "#command/config/index";
+import CreateCommand  from "#command/create/index";
+import ShowCommand  from "#command/show/index";
+import ExecCommand  from "#command/exec/index";
 
+const environment = new Environment();
 const program = new Command("automaton");
-
 program
   .name("automaton")
-  .description("create & deploy your bot in seconds.")
+  .description("Command Line Interface For Automaton Framework")
   .version("1.0.0")
 
-program.addCommand(CreateCommand());
-program.addCommand(ExecCommand());
-program.addCommand(ProfileCommand());
-program.addCommand(ShowCommand());
+program.addCommand(new ConfigCommand({
+  name:'config',
+  description:'Manage the automaton-cli configuration'
+},environment));
+program.addCommand(new CreateCommand({
+  name:'create', 
+  description:'To create a new project (bot) of automaton framework'
+},environment));
+program.addCommand(new ShowCommand({
+  name:'show',
+  description:'Show the automaton configuration'
+},environment));
+program.addCommand(new ExecCommand({
+  name:'exec',
+  description:'To run project of automaton framework.'
+},environment));
 
-(async()=>{
-  program.parseAsync(process.argv);
-})();
+program.parseAsync(process.argv);
