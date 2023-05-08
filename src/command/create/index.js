@@ -17,6 +17,8 @@ class CreateCommand extends BaseCommand{
         .option(`-i, --interactive`, `interactive`,false)
         .option(`-d, --description [value]`, `describe what your automaton bot does.`,`Describe what your automaton bot does ?`)
         .option(`--create-env`, `use local .env file instead of global .env`,false)
+        .option(`--sub-folder [value]`, `create the project into sub folder of root directory`,"")
+        .option(`--skip-install`, `Skip npm install`,false)
         .action(this.action.bind(this));
 
         return this.cmd;
@@ -50,20 +52,21 @@ class CreateCommand extends BaseCommand{
                     },
                 ];
                 const response = await prompts(questions);
-                await this.create({name:response.name,description:response.description,template:response.useTemplateRest ? 'rest' : 'crawler',createEnv:response.createEnv});
+                await this.create({name:response.name,description:response.description,template:response.useTemplateRest ? 'rest' : 'crawler',createEnv:response.createEnv,subFolder:"",skipInstall:false});
             }else{
                 if(arg === undefined){
                     throw new Error("missing argument 'name'");
                 }
 
-                await this.create({name:arg,template:option.template,description:option.description,createEnv:option.createEnv});
+                await this.create({name:arg,template:option.template,description:option.description,createEnv:option.createEnv,subFolder:option.subFolder,skipInstall:option.skipInstall});
             }
         }catch(err){
-            console.error(err.message);
+            // console.error(err.message);
+            throw err;
         }
     }
 
-    async create({name,template,description,createEnv}){
+    async create({name,template,description,createEnv,subFolder,skipInstall}){
         if(name.length < 3 || name.length >50){
             throw new Error(`Sorry, name should be > 3 and <= 50`);
         }
@@ -75,9 +78,8 @@ class CreateCommand extends BaseCommand{
         const projectName = `${Constants.PROJECT_BOT_PREFIX[template]}${name}`;
         const scope = this.environment.config.get('project.bot.scope');
         const repository = this.environment.config.get('project.bot.repository');
-        const currentPath = process.cwd();
         const fullProjectName = scope.length ? `${scope}/${projectName}` : projectName;
-        const projectRootPath = path.join(currentPath, projectName);
+        const projectRootPath = path.join(process.cwd(), subFolder.length ? subFolder : "",projectName);
         const gitRepo = this.environment.config.get('project.bot.boilerplate');
 
         if(fsExtra.existsSync(projectRootPath)){
@@ -95,6 +97,8 @@ class CreateCommand extends BaseCommand{
         //1. download the project and cd into it
         console.log('Downloading files...');
         execSync(`git clone --depth 1 ${gitRepo} ${projectRootPath}`);
+        
+        const tmpCwd = process.cwd();
         process.chdir(projectRootPath);
 
         //2. adjust the package.json
@@ -135,18 +139,22 @@ class CreateCommand extends BaseCommand{
         let t = await fsExtra.readFile(mainFilepath, {encoding:'utf8'});
         t = t.replace(/BotName/g,className).replace(/\[BOT_NAME\]/g,);
         await fsExtra.writeFile(mainFilepath,t);
+
+        //6. create .env files?
+        createEnv ? null : await fsExtra.remove(path.join(projectRootPath,".env"));
   
-        //6. cleanup
+        //7. cleanup
         console.log('Removing useless files');
         execSync('npx rimraf ./.git ./src/templates ./CHANGELOG.md');
         fsExtra.ensureFileSync(path.join(projectRootPath,'CHANGELOG.md'));
 
-        //7. install dependencies
+        //8. install dependencies
         console.log('Installing dependencies...');
-        execSync('npm install');
+        skipInstall ? null : execSync('npm install');
   
         console.log('The installation is done, have fun !');
   
+        process.chdir(tmpCwd);
     }
 
 

@@ -46,6 +46,7 @@
   "imports": {
     "#src/*": "./src/*.js",
     "#lib/*": "./src/lib/*.js",
+    "#mock/*": "./src/mocks/*.js",
     "#command/*": "./src/command/*.js"
   },
   "exports": "./src/index.js",
@@ -65,6 +66,7 @@
     "conf": "^11.0.1",
     "dotenv": "^16.0.3",
     "fs-extra": "^11.1.1",
+    "load-json-file": "^7.0.1",
     "modify-json-file": "^1.2.2",
     "open": "^9.1.0",
     "prompts": "^2.4.2"
