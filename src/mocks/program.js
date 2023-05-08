@@ -1,8 +1,9 @@
 import { Command } from "commander";
 import Environment from "#lib/environment";
 import {Tests} from '@aikosia/automaton-core';
+import {jest} from '@jest/globals';
 
-await Tests.createMockApp();
+await Tests.createMockApp(jest);
 
 async function main(TestCommandClass,args){
     const environment = new Environment();
