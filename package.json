@@ -58,7 +58,7 @@
     "@aikosia/automaton-daemon"
   ],
   "dependencies": {
-    "@aikosia/automaton-core": "^1.2.1",
+    "@aikosia/automaton-core": "^1.3.0",
     "@aikosia/automaton-daemon": "^1.0.0",
     "@igor.dvlpr/valid-path": "^2.2.1",
     "capitalize": "^2.0.4",
