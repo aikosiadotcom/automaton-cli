@@ -16,6 +16,10 @@ class LocalPackageManager extends Runtime.InterfacePackageManager{
             [this.name]:{}
         }
     }
+
+    resolve(name){
+        return this.root();
+    }
 }
 
 export default (projectName)=>new LocalPackageManager(projectName)

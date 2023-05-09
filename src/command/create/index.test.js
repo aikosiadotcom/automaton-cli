@@ -34,6 +34,7 @@ const testCase = async(commandArgument,opts)=>{
     expect(fsExtra.existsSync(path.join(projectRootPath,"automaton.config.json"))).toBeTruthy();
     const automatonConfig = await loadJsonFile(path.join(projectRootPath,"automaton.config.json"));
     expect(automatonConfig["template"]).toBe(template);
+    expect(automatonConfig["runParameter"]).toBe(template === 'rest' ? 'context' : 'page');
 
     const mainFilepath = path.join(projectRootPath,"src","index.js");
     const className = capitalize.words(projectName.split("-").join(" ")).split(" ").join("");

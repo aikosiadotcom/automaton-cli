@@ -127,6 +127,7 @@ class CreateCommand extends BaseCommand{
             path.join(projectRootPath, "automaton.config.json"),
             {
                 template: s => `${template}`,
+                runParameter:s=>template == 'rest' ? 'context': s
             }
         );
 

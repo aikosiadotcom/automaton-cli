@@ -1,6 +1,6 @@
 import BaseCommand from "#lib/base_command";
 import {Runtime} from "@aikosia/automaton-core";
-import localPackageManager from "#lib/local_package_manager";
+import getLocalPackageManager from "#lib/local_package_manager";
 import {readPackage} from 'read-pkg';
 
 class ExecCommand extends BaseCommand{
@@ -8,7 +8,6 @@ class ExecCommand extends BaseCommand{
         super(options,environment);
 
         this.cmd
-        .argument("[name]","The names of configuration to show. Availables: 'path', 'env'. Default to 'env'","env")  
         .action(this.action.bind(this));
         
         return this.cmd;
@@ -20,8 +19,7 @@ class ExecCommand extends BaseCommand{
 
         //get the project name
         const pkg = await readPackage();
-
-        const runtime = new Runtime({packageManager:localPackageManager(pkg["name"])});
+        const runtime = new Runtime({packageManager:getLocalPackageManager(pkg["name"]),exitOnFinish:true});
         await runtime.run();
     }
 }
