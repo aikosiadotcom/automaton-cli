@@ -1,5 +1,12 @@
 # Semantic Versioning Changelog
 
+## [1.1.2](https://github.com/aikosiadotcom/automaton-cli/compare/v1.1.1...v1.1.2) (2023-05-09)
+
+
+### Bug Fixes
+
+* adjust ([522b85d](https://github.com/aikosiadotcom/automaton-cli/commit/522b85d4ffcc98d2966b8f45d34f094f6b6c7080))
+
 ## [1.1.1](https://github.com/aikosiadotcom/automaton-cli/compare/v1.1.0...v1.1.1) (2023-05-08)
 
 
