@@ -5,8 +5,8 @@ import path from 'path';
 import fsExtra from 'fs-extra';
 import { Constants, Runtime } from "@aikosia/automaton-core";
 import {readPackage} from "read-pkg";
-import {loadJsonFile} from 'load-json-file';
 import capitalize from 'capitalize';
+
 
 const testCase = async(commandArgument,opts)=>{
     const name = opts.name;
@@ -32,7 +32,7 @@ const testCase = async(commandArgument,opts)=>{
     expect(JSON.stringify(pkg["scripts"])).not.toContain("asterisker -l &&");
     
     expect(fsExtra.existsSync(path.join(projectRootPath,"automaton.config.json"))).toBeTruthy();
-    const automatonConfig = await loadJsonFile(path.join(projectRootPath,"automaton.config.json"));
+    const automatonConfig =  fsExtra.readJSONSync(path.join(projectRootPath,"automaton.config.json"));
     expect(automatonConfig["template"]).toBe(template);
     expect(automatonConfig["runParameter"]).toBe(template === 'rest' ? 'context' : 'page');
 

@@ -1,5 +1,4 @@
 import { Command } from "commander";
-import Environment from "./environment.js";
 
 class BaseCommand{
 

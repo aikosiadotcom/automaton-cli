@@ -5,10 +5,6 @@ class Environment extends App{
   constructor(){
     super({key:"automaton-cli",childKey:"config"});
 
-    if(!this.explorer.env.isDev()){
-      this.explorer.env.setToPro();
-    }
-    
     this.config = new Conf({
       configName:"automaton-cli",
       projectVersion:"1.0.0",
