@@ -58,8 +58,8 @@
     "@aikosia/automaton-daemon"
   ],
   "dependencies": {
-    "@aikosia/automaton-core": "^1.4.0",
-    "@aikosia/automaton-daemon": "^1.0.0",
+    "@aikosia/automaton-core": "^1.4.1",
+    "@aikosia/automaton-daemon": "^1.0.1",
     "capitalize": "^2.0.4",
     "chokidar": "^3.5.3",
     "commander": "^10.0.1",
