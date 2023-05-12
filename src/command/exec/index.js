@@ -15,13 +15,14 @@ class ExecCommand extends BaseCommand{
         .option(`-h, --host [value]`, `override value of AUTOMATON_DAEMON_HOST local or global .env file`,``)
         .option(`-p, --port [value]`, `override value of AUTOMATON_DAEMON_PORT local or global .env file`,``)
         .option(`-w, --watch`, `watch for changes`,false)
+        .option(`--use-daemon`, `local development`,true)
         .action(this.action.bind(this));
         
         return this.cmd;
     }
 
     async action(option){
-        const daemon = await this.run(option);
+        const runner = await this.run(option);
         if(option.watch == true){
             chokidar.watch([
                 path.join(process.cwd(),"src"),
@@ -30,7 +31,7 @@ class ExecCommand extends BaseCommand{
                 ignoreInitial:true
             }).on('all', async (event, path) => {
                 console.log(event,`${path}`);
-                await daemon.reloadRuntime();
+                await runner.reload();
             });
         }
     }
@@ -38,29 +39,36 @@ class ExecCommand extends BaseCommand{
     async run(option){
         console.log("env: ",process.env.NODE_ENV);
         console.log("cwd: ",process.cwd());
-
         const manifest = await Runtime.Manifest.get();
         //get the project name
         const pkg = await readPackage();
-        const daemon = new Daemon({
-            host:option.host,
-            port:option.port,
-            browser:{
-                profile:{
-                    name:manifest.profile
+        let runner;
+        if(option.useDaemon){
+            //local
+            runner = new Daemon({
+                host:option.host,
+                port:option.port,
+                browser:{
+                    profile:{
+                        name:manifest.profile
+                    },
+                    expose:false
                 },
-                expose:false
-            },
-            runtime:{
-                packageManager:getLocalPackageManager(pkg["name"])
-            }
-        });
-        daemon.event.on("error",err=>{
+                runtime:{
+                    packageManager:getLocalPackageManager(pkg["name"])
+                }
+            });
+        }else{
+            //remote
+            runner = new Runtime({packageManager:getLocalPackageManager(pkg["name"])});
+        }
+
+        runner.event.on("error",err=>{
             console.log(err);
         });
-        await daemon.run();
+        await runner.run();
 
-        return daemon;
+        return runner;
     }
 }
 
